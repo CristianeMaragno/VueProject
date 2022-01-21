@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
   - name: app
-    image: gcr.io/vueproject-338818/demovue-app
+    image: gcr.io/vueproject-338818/vue-project-3
     ports:
       - containerPort: 8080
 
