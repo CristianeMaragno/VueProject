@@ -8,8 +8,6 @@
         <b-nav-item-dropdown text="Língua" right>
           <b-dropdown-item href="#">EN</b-dropdown-item>
           <b-dropdown-item href="#">ES</b-dropdown-item>
-          <b-dropdown-item href="#">RU</b-dropdown-item>
-          <b-dropdown-item href="#">FA</b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown text="Usuário" right>
@@ -21,17 +19,5 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'topbar',
-  props: {
-  }
-}
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.container-topbar{
-  padding-left:15px;
-}
-</style>
+<script src="./topbar.js"></script>
+<style scoped src="./topbar.css"></style>
