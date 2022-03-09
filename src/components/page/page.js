@@ -13,7 +13,7 @@ export default {
 
   methods: {
     getValue(){
-      var value = Vue.http.get("http://34.133.174.49:5000/content/page").then((resp) => {
+      var value = Vue.http.get("http://35.224.148.109:5000/content/page").then((resp) => {
         return resp;
       });
 
