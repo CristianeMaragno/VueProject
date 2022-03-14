@@ -6,7 +6,7 @@ metadata:
 
 --- 
 kind: ClusterRole #allow traefik to manage and watch resources
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: traefik-ingress
 rules:
@@ -31,7 +31,7 @@ rules:
 
 ---
 kind: ClusterRoleBinding #enable those permissions
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: traefik-ingress
 roleRef:
