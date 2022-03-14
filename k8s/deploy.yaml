@@ -25,23 +25,23 @@ spec:
     name: app-pod
     app: vue-project
   ports:
-    - protocol: TCP
+    - name: http
       port: 5000
       targetPort: 8080
 
 ---
-apiVersion: v1 #app inter ingress
+apiVersion: apps/v1 #app inter ingress
 kind: Ingress
 metadata:
   name: app-ingress
-  labels:
-    name: app-ingress
-    app: vue-project
+  annotations:
+    kubernetes.io/ingress.class: traefik
 spec:
-  rules: 
-  - host: myapp.com #change to the url of the server
+  rules:
+  - host: http://34.69.96.174:80
     http:
-      paths: 
-      - backend: 
-        serviceName: app-service
-        servicePort: 5000
+      paths:
+      - path: /
+        backend:
+          serviceName: app-service
+          servicePort: http
