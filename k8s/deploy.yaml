@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v1 #application pod
 kind: Pod
 metadata:
   name: app-pod
@@ -13,7 +13,7 @@ spec:
       - containerPort: 8080
 
 ---
-apiVersion: v1
+apiVersion: v1 #internal service
 kind: Service
 metadata:
   name: app-service
@@ -21,10 +21,27 @@ metadata:
     name: app-service
     app: vue-project
 spec:
-  type: LoadBalancer
-  ports:
-  - port: 5000
-    targetPort: 8080
   selector:
     name: app-pod
     app: vue-project
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 8080
+
+---
+apiVersion: v1 #app inter ingress
+kind: Ingress
+metadata:
+  name: app-ingress
+  labels:
+    name: app-ingress
+    app: vue-project
+spec:
+  rules: 
+  - host: myapp.com #change to the url of the server
+    http:
+      paths: 
+      - backend: 
+        serviceName: app-service
+        servicePort: 5000
