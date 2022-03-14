@@ -37,7 +37,7 @@ metadata:
   namespace: default
 spec:
   rules:
-    - host: http://34.69.96.174:80
+    - host: crismaragno.com
       http:
         paths:
           - path: /test
