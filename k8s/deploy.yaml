@@ -35,6 +35,8 @@ kind: Ingress
 metadata:
   name: app-ingress
   namespace: default
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
     - host: crismaragno.com
@@ -44,6 +46,6 @@ spec:
             pathType: Exact
             backend:
               service:
-                  name:  app-service
-                  port:
-                    number: 80
+                name:  app-service
+                port:
+                  number: 80

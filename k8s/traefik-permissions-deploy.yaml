@@ -10,7 +10,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: traefik-ingress
 rules:
-  - apiGroups:
+  -  apiGroups:
       - ""
     resources:
       - services
@@ -22,12 +22,20 @@ rules:
       - watch
   - apiGroups:
       - extensions
+      - networking.k8s.io
     resources:
       - ingresses
+      - ingressclasses
     verbs:
       - get
       - list
       - watch
+  - apiGroups:
+      - extensions
+    resources:
+      - ingresses/status
+    verbs:
+      - update
 
 ---
 kind: ClusterRoleBinding #enable those permissions

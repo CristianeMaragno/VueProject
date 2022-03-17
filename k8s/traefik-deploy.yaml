@@ -1,50 +1,41 @@
 kind: Deployment #ingress controller
 apiVersion: apps/v1
 metadata:
-  name: traefik-ingress
-  namespace: default
+  name: traefik
   labels:
-    k8s-app: vue-project
+    app: vue-project
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: vue-project
+      app: vue-project
   template:
     metadata:
       labels:
-        k8s-app: vue-project
-        name: traefik-ingress-lb
+        app: vue-project
     spec:
       serviceAccountName: traefik-ingress
-      terminationGracePeriodSeconds: 60
       containers:
-      - image: traefik:v1.7
-        name: traefik-ingress-lb
-        ports:
-        - name: http
-          containerPort: 80
-        - name: admin
-          containerPort: 8080
-        args:
-        - --api
-        - --kubernetes
-        - --logLevel=INFO
+        - name: traefik
+          image: traefik:v2.6
+          args:
+            - --entrypoints.web.address=:80
+            - --providers.kubernetesingress
+          ports:
+            - name: web
+              containerPort: 80
 
 ---
 kind: Service #Create NodePorts for External Access
 apiVersion: v1
 metadata:
-  name: traefik-ingress-service
-  namespace: default
+  name: traefik
 spec:
+  type: LoadBalancer
   selector:
-    k8s-app: vue-project
+    app: vue-project
   ports:
     - protocol: TCP
       port: 80
       name: web
-    - protocol: TCP
-      port: 8080
-      name: admin
-  type: LoadBalancer
+      targetPort: 80
