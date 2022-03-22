@@ -42,7 +42,7 @@ spec:
     - host: crismaragno.com
       http:
         paths:
-          - path: /test
+          - path: /
             pathType: Exact
             backend:
               service:
