@@ -20,14 +20,10 @@ spec:
           image: traefik:v2.6
           args:
             - --entrypoints.web.address=:80
-            - --entrypoints.dashboard.address=:8080
             - --providers.kubernetesingress
-            - --api.dashboard=true
           ports:
             - name: web
               containerPort: 80
-            - name: dashboard
-              containerPort: 8080
 
 ---
 kind: Service #Create NodePorts for External Access
@@ -43,7 +39,3 @@ spec:
       port: 80
       name: web
       targetPort: 80
-    - protocol: TCP
-      port: 8080
-      name: dashboard
-      targetPort: 8080
