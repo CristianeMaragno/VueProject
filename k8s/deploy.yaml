@@ -21,11 +21,12 @@ metadata:
     name: app-service
     app: vue-project
 spec:
+  type: ClusterIP
   selector:
     name: app-pod
     app: vue-project
   ports:
-    - name: http
+    - protocol: TCP
       port: 80
       targetPort: 8080
 
