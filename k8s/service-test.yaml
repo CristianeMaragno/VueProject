@@ -9,7 +9,7 @@ spec:
   type: LoadBalancer
   ports:
   - port: 5000
-    targetPort: 80
+    targetPort: 3200
   selector:
     name: app-service
     app: vue-project
